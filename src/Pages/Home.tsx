@@ -39,7 +39,6 @@ const Home = () => {
     try {
       setLoadingPost(true);
       const allPosts = await getAllPaginated("post", range.from, range.to);
-      console.log(allPosts);
 
       if (allPosts && allPosts?.length < 10) {
         setHasMorePosts(false);

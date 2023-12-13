@@ -27,7 +27,6 @@ const Navbar: React.FC = () => {
   const { userData, setUserData, setPrflpic, prflpic, dimensions } =
     useContext(AppContext);
   const navigate = useNavigate();
-  console.log(userData);
   useEffect(() => {
     if (dimensions.width < 780) {
       navigate("/Home");
@@ -39,7 +38,6 @@ const Navbar: React.FC = () => {
         if (userData.user.id) {
           const imG = await getData("users");
           if (imG) {
-            console.log(imG);
             setPrflpic(imG);
           }
         }
@@ -94,22 +92,12 @@ const Navbar: React.FC = () => {
 
   const handleTabClick = ({ key }: { key: React.Key }) => {
     const clickedTab = key as string;
-    console.log(clickedTab);
     setClickedTab(Number(clickedTab));
   };
 
   return (
     <Layout>
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
-      >
+      <Sider breakpoint="lg" collapsedWidth="0">
         <div className="demo-logo-vertical" />
         <Menu
           style={{ padding: "1em", height: "100vh", marginTop: "4.6em" }}

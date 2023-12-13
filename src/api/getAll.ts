@@ -8,9 +8,6 @@ export const getAllPaginated = async (
   end: number
 ): Promise<allData[] | null> => {
   try {
-    console.log(start);
-    console.log(end);
-    console.log(from);
     const { data, error } = await supabase
       .from(from)
       .select("*")

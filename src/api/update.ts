@@ -34,11 +34,6 @@ export const updateImg = async (
   value: string | undefined
 ) => {
   try {
-    console.log(from);
-    console.log(col);
-    console.log(matches);
-    console.log(name);
-    console.log(value);
     const { data, error } = await supabase
       .from(from)
       .update({ [name]: value })

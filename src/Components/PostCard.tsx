@@ -85,10 +85,8 @@ const PostCard: React.FC<Props> = ({
       arr = bookmarks;
     }
     if (userData.user.id) {
-      console.log(typeof userData.user.id);
       if (arr?.includes(userData.user.id)) {
         const Arr = likes?.filter((item) => item !== userData.user.id);
-        console.log(Arr);
         try {
           if (typeof post_id !== "undefined" && typeof Arr !== "undefined") {
             await updateData("post", "post_id", post_id, val, Arr);
@@ -207,10 +205,9 @@ const PostCard: React.FC<Props> = ({
             (item) => item.post_id === post_id
           );
           setAllComments(filteredComents);
-          console.log(filteredComents);
         }
       } catch (error) {
-        console.error("Error while getting post data", error);
+        toast.error("Error while getting post data");
       }
       setLoadingComments(false);
     };

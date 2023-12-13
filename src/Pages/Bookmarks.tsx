@@ -32,7 +32,6 @@ const Bookmarks = () => {
     } else {
       if (allPostData && userData.user.id) {
         const user_id = userData.user.id;
-        console.log(allPostData);
         const bookmarkPosts = allPostData.filter((item: allData) => {
           // Explicitly assert that item.bookmarks is an array of strings
           // since ts not recognising the type defined in supabase;

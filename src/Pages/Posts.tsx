@@ -1,12 +1,8 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { Button, Tag } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import {
   EditableProTable,
   ProCard,
   ProForm,
-  ProFormDependency,
-  ProFormDigit,
   ProTable,
   ActionType,
   EditableFormInstance,
@@ -14,19 +10,12 @@ import {
   ProFormInstance,
 } from "@ant-design/pro-components";
 import { useNavigate } from "react-router";
+import { toast } from "react-hot-toast";
 import AppContext from "../context/app-context";
 import { allData } from "../types";
 import { getAll } from "../api/getAll";
 import { Circles } from "react-loader-spinner";
 
-type DataSourceType = {
-  id: React.Key;
-  associate?: string;
-  questionsNum?: number;
-  type?: string;
-  fraction?: number;
-  scoringMethod?: string;
-};
 export type TableListItem = {
   id: string | undefined;
   name: string | undefined;
@@ -69,7 +58,6 @@ const Posts = () => {
           const creatorData = prflpic.filter(
             (val) => item.created_by === val.user_id
           )[0];
-          console.log(item.post_id);
 
           newArr.push({
             id: item.post_id,
@@ -79,7 +67,6 @@ const Posts = () => {
             bookmarks: item?.bookmarks?.length,
             createdAt: item.created_at,
           });
-          console.log(newArr);
         }
         setTableListDataSource(newArr);
       }
@@ -92,9 +79,8 @@ const Posts = () => {
       try {
         const allComments = await getAll("comments");
         setAllComments(allComments);
-        console.log(allComments);
       } catch (error) {
-        console.error("Error while getting post data", error);
+        toast.error("Error while getting post data");
       }
     };
     getAllCommentData();

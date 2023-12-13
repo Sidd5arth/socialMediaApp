@@ -53,7 +53,6 @@ const Profile: React.FC = () => {
         username = item.username;
       }
     }
-    console.log(prf);
     setImageSrc(prf);
     setUserName(username);
   }, [allPostData, userData, prflpic]);
@@ -104,15 +103,12 @@ const Profile: React.FC = () => {
 
   const handleOk = async () => {
     setConfirmLoading(true);
-    console.log(editName);
-    console.log(selectedImage);
     if (selectedImage) {
       const bucketName = "socialmedia-content";
       const filePath = `profile/${selectedImage.name}`;
       await uploadFile(bucketName, filePath, selectedImage);
     }
     if (editName) {
-      console.log(editName);
       try {
         if (userData.user.id) {
           await updateImg(

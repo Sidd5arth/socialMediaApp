@@ -99,8 +99,6 @@ const AuthPage: React.FC = () => {
             password: val.loginPassword,
           });
           if (data.user) {
-            console.log(data);
-
             localStorage.setItem("supabaseSession", data.session.access_token);
             setUserData({
               user: {
