@@ -27,7 +27,7 @@ const SideNavBar: React.FC = () => {
     <nav
       style={{ zIndex: "100" }}
       className={
-        "mb-10 w-96 rounded-lg mx-auto border-white border shadow-lg bg-blue-100 transform bg-opacity-50 backdrop-blur-md"
+        "mb-4 w-96 rounded-lg mx-auto border-white border shadow-lg bg-blue-100 transform bg-opacity-50 backdrop-blur-md"
       }
     >
       <ul className="flex gap-4 p-2 justify-center align-middle ">
