@@ -17,16 +17,17 @@ import { getAll } from "../api/getAll";
 import { Circles } from "react-loader-spinner";
 
 export type TableListItem = {
-  id: string | undefined;
+  id: React.Key | number;
   name: string | undefined;
   likes: number | undefined;
   bookmarks: number | undefined;
   creator: string | undefined;
   createdAt: string | undefined;
+  postId: string | undefined;
 };
 
 export type commentData = {
-  id: string | undefined;
+  id: React.Key | number;
   date: string | undefined;
   name: string | undefined;
   upgradeNum: string | undefined;
@@ -49,6 +50,7 @@ const Posts = () => {
       navigate("/", { replace: true });
       return;
     } else {
+      let num = 0;
       if (allPostData && userData.user.id) {
         const myPosts = allPostData.filter(
           (items: allData) => items.created_by === userData.user.id
@@ -58,15 +60,16 @@ const Posts = () => {
           const creatorData = prflpic.filter(
             (val) => item.created_by === val.user_id
           )[0];
-
           newArr.push({
-            id: item.post_id,
+            id: num,
             name: item.content,
             creator: creatorData.username,
             likes: item?.likes?.length,
             bookmarks: item?.bookmarks?.length,
             createdAt: item.created_at,
+            postId: item.post_id,
           });
+          num++;
         }
         setTableListDataSource(newArr);
       }
@@ -88,10 +91,10 @@ const Posts = () => {
 
   const expandedRowRender = (id: string | undefined) => {
     const data: commentData[] = [];
-    allPostComments?.map((item) => {
+    allPostComments?.map((item, index: React.Key) => {
       if (item.post_id === id) {
         data.push({
-          id: item.comment_id,
+          id: index,
           date:
             new Date("2023-12-11T08:03:50.753623+00:00").toLocaleDateString(
               "en-US"
@@ -101,7 +104,7 @@ const Posts = () => {
               "en-US"
             ),
           name: item.content,
-          upgradeNum: item.comment_id,
+          upgradeNum: item.post_id,
         });
       }
     });
@@ -245,6 +248,7 @@ const Posts = () => {
                     containers: 0,
                     creator: "",
                     createdAt: "",
+                    postId: "",
                   };
                 },
               }}
@@ -254,7 +258,7 @@ const Posts = () => {
                 onChange: setEditableRowKeys,
               }}
               expandable={{
-                expandedRowRender: (record) => expandedRowRender(record.id),
+                expandedRowRender: (record) => expandedRowRender(record.postId),
               }}
             />
           </ProForm>
