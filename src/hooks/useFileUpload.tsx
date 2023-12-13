@@ -25,7 +25,6 @@ function useFileUpload() {
     const { data } = supabase.storage.from(bucketName).getPublicUrl(filePath);
     const link = data.publicUrl;
     setUploadResponse(link);
-    console.log(link);
     setIsUploading(false);
   };
   return { uploadFile, uploadResponse, isUploading };

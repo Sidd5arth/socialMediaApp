@@ -26,19 +26,6 @@ const CreatePost: React.FC = () => {
     }
   }, [dimensions.width > 780]);
 
-  // const handleTextArea = (val: string) => {
-  //   setPostText(val);
-  // };
-  // if (mutationLoading || mutationError) {
-  //   return;
-  // }
-  // if (image) {
-  //   const bucketName = "socialmedia-content";
-  //   const filePath = `posts/${image.name}`;
-  //   await uploadFile(bucketName, filePath, image);
-  // }
-  // if (uploadResponse) {
-
   const handlePostSubmit = async () => {
     const inputText = inputRef?.current?.value;
     const userId = userData.user.id;
@@ -47,7 +34,6 @@ const CreatePost: React.FC = () => {
       if (content && userId) {
         setloading(true);
 
-        // Await the result of insertData
         await insertData("post", [{ created_by: userId, content: content }]);
 
         const getAllPostData = async () => {
@@ -93,13 +79,12 @@ const CreatePost: React.FC = () => {
           <SideNavBar />
         </div>
       )}
-      <div className="md:w-full w-[50vh] mx-auto mt-10 p-4 shadow-lg shadow-gray-200 bg-white rounded-lg">
+      <div className="md:w-full w-[80vw] mx-auto mt-10 p-4 shadow-lg shadow-gray-200 bg-white rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Create a Post</h2>
         <textarea
           className="resize-none w-full h-20 p-2 mb-4 border border-gray-200 bg-gray-50 bg-opacity-50 rounded-lg"
           placeholder="Write your post..."
           ref={inputRef}
-          // onChange={(e) => handleTextArea(e.target.value)}
         ></textarea>
         <div className="flex justify-between items-center mb-4">
           <button

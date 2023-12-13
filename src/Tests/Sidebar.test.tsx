@@ -50,7 +50,6 @@ describe("SideNavBar component", () => {
       const navItem = screen.getByText(item, { selector: "nav li p" });
       fireEvent.click(navItem);
 
-      console.log(mockNavigate);
       expect(mockNavigate).toHaveBeenCalledWith(`/`);
     }
   });
