@@ -1,5 +1,10 @@
 import React from "react";
-import { RiHome2Line, RiArticleLine, RiInformationLine } from "react-icons/ri";
+import {
+  RiHome2Line,
+  RiArticleLine,
+  RiInformationLine,
+  RiAddCircleLine,
+} from "react-icons/ri";
 import { useNavigate } from "react-router";
 import { FaRegHeart, FaRegSave } from "react-icons/fa";
 
@@ -11,7 +16,8 @@ interface NavigationItem {
 
 const navigationItems: NavigationItem[] = [
   { path: "/Home", icon: <RiHome2Line size={15} />, label: "Home" },
-  { path: "/Post", icon: <RiArticleLine size={15} />, label: "Post" },
+  { path: "/Post", icon: <RiAddCircleLine size={15} />, label: "Create" },
+  { path: "/Posts", icon: <RiArticleLine size={15} />, label: "Posts" },
   { path: "/Profile", icon: <RiInformationLine size={15} />, label: "Profile" },
   { path: "/Likes", icon: <FaRegHeart size={14} />, label: "Likes" },
   { path: "/Bookmarks", icon: <FaRegSave size={14} />, label: "Bookmarks" },
@@ -27,10 +33,10 @@ const SideNavBar: React.FC = () => {
     <nav
       style={{ zIndex: "100" }}
       className={
-        "mb-4 w-96 rounded-lg mx-auto border-white border shadow-lg bg-blue-100 transform bg-opacity-50 backdrop-blur-md"
+        "mb-2 w-96 rounded-lg mx-auto border-white border shadow-lg bg-blue-100 transform bg-opacity-50 backdrop-blur-md"
       }
     >
-      <ul className="flex gap-4 p-2 justify-center align-middle ">
+      <ul className="flex gap-3 p-2 justify-center align-middle ">
         {navigationItems.map((item) => (
           <li
             key={item.path}
