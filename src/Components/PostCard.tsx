@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  ReactEventHandler,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AppContext from "../context/app-context";
 import {
   FaRegHeart,

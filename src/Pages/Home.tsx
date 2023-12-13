@@ -104,7 +104,7 @@ const Home = () => {
           scrollableDivRef.current;
 
         if (
-          scrollTop + clientHeight >= scrollHeight - 10 &&
+          scrollTop + clientHeight >= scrollHeight &&
           hasMorePosts &&
           !waitnext
         ) {
@@ -114,7 +114,7 @@ const Home = () => {
           //simulating debuncing
           setTimeout(() => {
             setWaitnext(false);
-          }, 500);
+          }, 300);
         }
       }
     };

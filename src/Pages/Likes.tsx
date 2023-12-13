@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import PostCard from "../Components/PostCard";
 import { useNavigate } from "react-router";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import SideNavBar from "../Components/SideNavBar";
 import AppContext from "../context/app-context";
 import { Circles } from "react-loader-spinner";

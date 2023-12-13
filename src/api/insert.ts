@@ -17,5 +17,3 @@ export const insertData = async (from: string, payload: comments[]) => {
     toast.error(`${from} failed`);
   }
 };
-
-//payload = [{ some_column: 'someValue', other_column: 'otherValue' }]

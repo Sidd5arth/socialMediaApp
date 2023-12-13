@@ -4,13 +4,11 @@ import { Circles } from "react-loader-spinner";
 import SideNavBar from "./SideNavBar";
 import { useNavigate } from "react-router";
 import { insertData } from "../api/insert";
-import { allData } from "../types";
 import { toast } from "react-hot-toast";
 import { getAll } from "../api/getAll";
 
 const CreatePost: React.FC = () => {
-  const { userData, dimensions, setAllPostData, allPostData } =
-    useContext(AppContext);
+  const { userData, dimensions, setAllPostData } = useContext(AppContext);
   const [loading, setloading] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
