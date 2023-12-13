@@ -213,7 +213,7 @@ const Posts = () => {
           <Circles color="black" width={"10px"} height={"10px"} />
         </div>
       ) : (
-        <div className="w-full m-auto flex align-middle justify-center h-[96vh]">
+        <div className="w-full m-auto flex align-middle justify-center h-[90vh]">
           {smallScreen && (
             <div className="w-full absolute flex bottom-0">
               <SideNavBar />
