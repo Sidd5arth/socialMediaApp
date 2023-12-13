@@ -15,6 +15,7 @@ import AppContext from "../context/app-context";
 import { allData } from "../types";
 import { getAll } from "../api/getAll";
 import { Circles } from "react-loader-spinner";
+import SideNavBar from "../Components/SideNavBar";
 
 export type TableListItem = {
   id: React.Key | number;
@@ -45,6 +46,21 @@ const Posts = () => {
     TableListItem[]
   >([]);
   const navigate = useNavigate();
+  const [smallScreen, setSmallScreen] = useState<boolean>(
+    dimensions.width < 600
+  );
+  useEffect(() => {
+    if (dimensions.width < 600) {
+      setSmallScreen(true);
+    } else {
+      setSmallScreen(false);
+    }
+  }, [dimensions]);
+  useEffect(() => {
+    if (dimensions.width > 780) {
+      navigate("/Navbar");
+    }
+  }, [dimensions.width > 780]);
   useEffect(() => {
     if (!userData.user.id) {
       navigate("/", { replace: true });
@@ -197,7 +213,12 @@ const Posts = () => {
           <Circles color="black" width={"10px"} height={"10px"} />
         </div>
       ) : (
-        <div className="w-full m-auto">
+        <div className="w-full m-auto flex align-middle justify-center h-[96vh]">
+          {smallScreen && (
+            <div className="w-full absolute flex bottom-0">
+              <SideNavBar />
+            </div>
+          )}
           <ProForm<{
             table: TableListItem[];
           }>

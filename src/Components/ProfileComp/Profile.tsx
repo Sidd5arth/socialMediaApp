@@ -8,6 +8,8 @@ import { toast } from "react-hot-toast";
 import { updateImg } from "../../api/update";
 import { CgProfile } from "react-icons/cg";
 import useFileUpload from "../../hooks/useFileUpload";
+import { supabase } from "../../SupabaseClient";
+import { Circles } from "react-loader-spinner";
 
 const Profile: React.FC = () => {
   const {
@@ -165,6 +167,25 @@ const Profile: React.FC = () => {
     setSelectedImage("");
   };
 
+  const handleLogOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    localStorage.removeItem("supabaseSession");
+    navigate("/", { replace: true });
+    setUserData({
+      user: {
+        id: null,
+        email: undefined,
+        user_metadata: {
+          first_name: null,
+        },
+      },
+      session: null,
+    });
+    if (error) {
+      toast.error("something went wrong");
+    }
+  };
+
   return (
     <>
       <Modal
@@ -231,21 +252,27 @@ const Profile: React.FC = () => {
         </div>
       )}
       <div className="flex flex-col align-middle justify-center md:w-1/3 w-2/3 mt-10 mx-auto p-4 text-center bg-opacity-70 shadow-lg shadow-gray-200">
-        <div className="mb-4 w-full flex justify-center">
-          {imageSrc ? (
-            <div className="rounded-full w-[60px] h-[60px]">
-              <img
-                src={imageSrc}
-                alt="user image"
-                className="w-full h-full rounded-full mb-2"
-              />
-            </div>
-          ) : (
-            <div className="w-[60px] h-[60px]">
-              <CgProfile className="w-full h-full" />
-            </div>
-          )}
-        </div>
+        {isUploading ? (
+          <div className="h-[10px] w-full flex items-center justify-center gap-2">
+            <Circles color="black" width={"20px"} height={"20px"} />
+          </div>
+        ) : (
+          <div className="mb-4 w-full flex justify-center">
+            {imageSrc ? (
+              <div className="rounded-full w-[60px] h-[60px]">
+                <img
+                  src={imageSrc}
+                  alt="user image"
+                  className="w-full h-full rounded-full mb-2"
+                />
+              </div>
+            ) : (
+              <div className="w-[60px] h-[60px]">
+                <CgProfile className="w-full h-full" />
+              </div>
+            )}
+          </div>
+        )}
 
         <h2 className="text-xl font-semibold">
           <span>
@@ -261,13 +288,22 @@ const Profile: React.FC = () => {
             <span className="text-gray-500">Posts</span>
           </div>
         </div>
-        <div>
+        <div className="flex gap-3 justify-center">
           <button
             onClick={() => setOpen(true)}
             className="bg-green-400 text-white rounded shadow-lg p-2 w-[80px]"
           >
             Edit
           </button>
+
+          {smallScreen && (
+            <button
+              onClick={handleLogOut}
+              className="bg-red-400 text-white rounded shadow-lg p-2 w-[80px]"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </>
