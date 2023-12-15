@@ -12,13 +12,8 @@ const mockGetAll = getAll as jest.MockedFunction<typeof getAll>;
 
 describe("CreatePost component", () => {
   test("handles post creation when the 'Post' button is clicked", async () => {
-    // Mock the insertData and getAll functions
-    // mockInsertData.mockResolvedValue({}); // Change this line
     mockGetAll.mockResolvedValueOnce([{ post_id: "1", content: "Test post" }]);
 
-    // Render the component (not shown for brevity)
-
-    // Simulate user input
     const inputField = screen.getByPlaceholderText(
       "Write your post..."
     ) as HTMLInputElement;
