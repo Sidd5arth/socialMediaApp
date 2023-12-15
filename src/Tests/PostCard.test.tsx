@@ -64,8 +64,6 @@ test("handles like button click", async () => {
   expect(mockSetAllPostData).toHaveBeenCalledWith(expect.any(Function));
 });
 
-// Add similar test cases for handling bookmark button click, comment button click, etc.
-
 test('opens and closes modal when "delete" is clicked', () => {
   render(<PostCard post_id="mockPostId" creator_id="mockUserId" />);
 
@@ -80,7 +78,6 @@ test('opens and closes modal when "delete" is clicked', () => {
   });
 });
 
-// Add test cases for handling other modal interactions, such as "edit" and "comment".
 test("handles comment button click", async () => {
   render(
     <PostCard

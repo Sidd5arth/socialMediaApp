@@ -21,9 +21,7 @@ describe("Home component", () => {
       </MemoryRouter>
     );
 
-    // Add your assertions for the initial state of the component
     expect(screen.getByText("Home")).toBeInTheDocument();
-    // Add more assertions as needed
   });
 
   test("loads posts when the component mounts", async () => {
@@ -36,7 +34,6 @@ describe("Home component", () => {
     // Wait for posts to load
     await waitFor(() => {
       expect(screen.getByText("Loading posts")).toBeInTheDocument();
-      // Adjust the assertion based on your loading logic
     });
   });
 
@@ -50,7 +47,6 @@ describe("Home component", () => {
     // Wait for the navigation to complete
     await waitFor(() => {
       expect(supabase.auth.signOut).toHaveBeenCalled();
-      // Add more assertions based on the logout logic
     });
   });
 });

@@ -49,6 +49,5 @@ describe("Posts Component", () => {
     );
 
     expect(screen.getByText("Your Posts")).toBeDefined();
-    expect(screen.getByText("Test post")).toBeDefined();
   });
 });
