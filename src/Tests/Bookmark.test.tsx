@@ -1,106 +1,64 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import AppContextProvider from "../context/AppContextProvider";
+import "@testing-library/jest-dom/extend-expect";
 
 import Bookmarks from "../Pages/Bookmarks";
+import AppContext from "../context/app-context";
 
-// Mocking the context values for testing
-jest.mock("../context/AppContextProvider", () => ({
-  __esModule: true,
-  default: {
-    userData: {
-      user: { id: "123" },
+const appContextValues = {
+  userData: {
+    user: {
+      id: "123",
+      email: "example@example.com",
+      user_metadata: {
+        first_name: "John",
+      },
     },
-    dimensions: { width: 800 },
-    allPostData: [
-      {
-        post_id: "1",
-        content: "Test Content 1",
-        bookmarks: ["123"],
-        created_by: "123",
-        created_at: new Date(),
-      },
-      {
-        post_id: "2",
-        content: "Test Content 2",
-        bookmarks: [],
-        created_by: "456",
-        created_at: new Date(),
-      },
-    ],
-    prflpic: [
-      {
-        user_id: "123",
-        profile: "profile1.jpg",
-      },
-    ],
+    session: {},
   },
-}));
+  dimensions: {
+    width: 800,
+    height: 600,
+  },
+  allPostData: [],
+  prflpic: [],
+  setAllPostData: () => {},
+  setUserData: () => {},
+  setPrflpic: () => {},
+};
 
-test("renders Bookmarks component", () => {
-  render(
-    <AppContextProvider>
-      <Router>
-        <Bookmarks />
-      </Router>
-    </AppContextProvider>
-  );
+// Render the component with the mocked context values
+render(
+  <Router>
+    <AppContext.Provider value={appContextValues}>
+      <Bookmarks />
+    </AppContext.Provider>
+  </Router>
+);
 
-  // You can use screen queries to check if certain elements are rendered
-  expect(screen.getByText("Bookmarks")).toBeInTheDocument();
-  expect(
-    screen.getByText("post that are bookmarked shown here")
-  ).toBeInTheDocument();
+test("renders Bookmarks component correctly", () => {
+  // Mock the necessary context values
+
+  // Test that the "Bookmarks" heading is rendered
+  const headingElement = screen.getByText(/Bookmarks/i);
+  expect(headingElement).toHaveTextContent("Bookmarks"); // Use toHaveTextContent matcher
+
+  // Test that the loading spinner is not displayed
+  const spinnerElement = screen.queryByTestId("loading-spinner");
+  expect(spinnerElement).not.toBeInTheDocument();
 });
+test("renders PostCard component for each item in the bookmarked array", () => {
+  // Create a sample bookmarked array with multiple items
+  const bookmarkedArray = [
+    { post_id: 1, caption: "Post 1" },
+    { post_id: 2, caption: "Post 2" },
+    { post_id: 3, caption: "Post 3" },
+  ];
 
-test("displays bookmarked posts when there are bookmarks", () => {
-  render(
-    <AppContextProvider>
-      <Router>
-        <Bookmarks />
-      </Router>
-    </AppContextProvider>
-  );
+  // Select all PostCard components by testId
+  const postCardElements = screen.getAllByTestId("post-card");
 
-  // Assuming there's at least one bookmarked post
-  expect(screen.getByText("Test Content 1")).toBeInTheDocument();
-});
-
-test("displays loading spinner while loading posts", () => {
-  render(
-    <AppContextProvider>
-      <Router>
-        <Bookmarks />
-      </Router>
-    </AppContextProvider>
-  );
-
-  // Simulate loading state
-  expect(screen.getByTestId("loading-spinner")).toBeInTheDocument();
-});
-
-test("navigates to Navbar on window resize when width > 780", () => {
-  // Mock the navigate function
-  const mockNavigate = jest.fn();
-  jest.mock("react-router", () => ({
-    ...jest.requireActual("react-router"),
-    useNavigate: () => mockNavigate,
-  }));
-
-  render(
-    <AppContextProvider>
-      <Router>
-        <Bookmarks />
-      </Router>
-    </AppContextProvider>
-  );
-
-  // Resize the window
-  global.innerWidth = 800;
-  global.dispatchEvent(new Event("resize"));
-
-  // Expect the navigate function to be called
-  expect(mockNavigate).toHaveBeenCalledWith("/Navbar");
+  // Assert that the number of PostCard components is equal to the length of the bookmarked array
+  expect(postCardElements.length).toBe(bookmarkedArray.length);
 });

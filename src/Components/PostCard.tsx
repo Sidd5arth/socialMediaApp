@@ -8,7 +8,6 @@ import {
   FaCommentAlt,
 } from "react-icons/fa";
 import { Circles } from "react-loader-spinner";
-import SideNavBar from "./SideNavBar";
 import ProCard from "@ant-design/pro-card";
 import { Modal } from "antd";
 import { insertData } from "../api/insert";
