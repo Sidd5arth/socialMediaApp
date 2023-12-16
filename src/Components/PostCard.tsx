@@ -341,7 +341,7 @@ const PostCard: React.FC<Props> = ({
               <CgProfile className="w-full h-full" />
             </div>
           )}
-          <p className="text-gray-700 mb-2 w-2/3">{caption}</p>
+          <p className="text-gray-700 mb-2">{caption}</p>
           <p className="text-gray-500 mb-2 text-xs italic w-1/6">
             {typeof created_at === "string"
               ? getTimestampString(created_at)
