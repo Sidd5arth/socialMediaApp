@@ -36,6 +36,7 @@ const PostCard: React.FC<Props> = ({
   bookmarks,
   post_id,
   creator_id,
+  created_at,
 }) => {
   const { userData, setAllPostData, allPostData } = useContext(AppContext);
   const [open, setOpen] = useState(false);
@@ -193,7 +194,7 @@ const PostCard: React.FC<Props> = ({
     const getAllCommentData = async () => {
       try {
         const allComments = await getAll("comments");
-        // geting all comments and filtering the matched post_id then sorting based on create_at
+        // geting all comments and filtering the matched post_id
         if (allComments !== null) {
           const filteredComents = allComments.filter(
             (item) => item.post_id === post_id
@@ -232,6 +233,11 @@ const PostCard: React.FC<Props> = ({
     }
     setUserComment("");
   };
+  function getTimestampString(val: string) {
+    const dateObject = new Date(val);
+    const formattedTimestamp = dateObject.toLocaleString();
+    return formattedTimestamp;
+  }
 
   return (
     <ProCard className="w-full mx-auto border-2 rounded-lg mb-2 border-white shadow-lg shadow-gray-200">
@@ -321,7 +327,7 @@ const PostCard: React.FC<Props> = ({
         )}
       </Modal>
       <div className="flex-col">
-        <div className="flex h-full gap-9">
+        <div className="flex h-full gap-9 justify-between">
           {imageSrc ? (
             <div className="rounded-full w-[60px] h-[60px]">
               <img
@@ -335,7 +341,12 @@ const PostCard: React.FC<Props> = ({
               <CgProfile className="w-full h-full" />
             </div>
           )}
-          <p className="text-gray-700 mb-2">{caption}</p>
+          <p className="text-gray-700 mb-2 w-2/3">{caption}</p>
+          <p className="text-gray-500 mb-2 text-xs italic w-1/6">
+            {typeof created_at === "string"
+              ? getTimestampString(created_at)
+              : ""}
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between mt-1 gap-4 mb-2">
