@@ -3,14 +3,15 @@
 
 ## PASSWORD - abcgamil
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 
 # OR DOWNLOAD the APK from here
 
 https://drive.google.com/drive/folders/1sZAN2MlG0b06v1_a8WZEB_KX0RQSDPj5?usp=sharing
+
+
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
