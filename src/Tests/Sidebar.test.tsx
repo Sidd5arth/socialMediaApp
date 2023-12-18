@@ -32,7 +32,8 @@ describe("SideNavBar component", () => {
     );
 
     expect(screen.getByText("Home")).toBeInTheDocument();
-    expect(screen.getByText("Post")).toBeInTheDocument();
+    expect(screen.getByText("Create")).toBeInTheDocument();
+    expect(screen.getByText("Posts")).toBeInTheDocument();
     expect(screen.getByText("Profile")).toBeInTheDocument();
     expect(screen.getByText("Likes")).toBeInTheDocument();
     expect(screen.getByText("Bookmarks")).toBeInTheDocument();
@@ -45,7 +46,7 @@ describe("SideNavBar component", () => {
       </MemoryRouter>
     );
 
-    const navigationItems = ["Home", "Post", "Profile", "Likes", "Bookmarks"];
+    const navigationItems = ["Home", "Posts", "Profile", "Likes", "Bookmarks"];
     for (const item of navigationItems) {
       const navItem = screen.getByText(item, { selector: "nav li p" });
       fireEvent.click(navItem);

@@ -21,10 +21,12 @@ import { getData } from "../api/getAll";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Navbar: React.FC = () => {
+  const [clikedTab, setClickedTab] = useState<number>(1);
+  const [loggingOut, setIsLoggingOut] = useState<boolean>(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const { userData, setUserData, setPrflpic, prflpic, dimensions } =
+  const { userData, setUserData, setPrflpic, dimensions } =
     useContext(AppContext);
   const navigate = useNavigate();
   useEffect(() => {
@@ -48,6 +50,7 @@ const Navbar: React.FC = () => {
     getImg();
   }, [userData]);
   const handleLogOut = async () => {
+    setIsLoggingOut(true);
     const { error } = await supabase.auth.signOut();
     localStorage.removeItem("supabaseSession");
     navigate("/", { replace: true });
@@ -64,6 +67,7 @@ const Navbar: React.FC = () => {
     if (error) {
       toast.error("something went wrong");
     }
+    setIsLoggingOut(false);
   };
   const tabData = [
     { icn: HomeOutlined, name: "Home", component: <Home /> },
@@ -82,13 +86,12 @@ const Navbar: React.FC = () => {
             className="text-sm cursor-pointer bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg shadow-gray-300"
             onClick={handleLogOut}
           >
-            Logout
+            {loggingOut ? "Logging out..." : "Logout"}
           </button>
         </div>
       ),
     },
   ];
-  const [clikedTab, setClickedTab] = useState<number>(1);
 
   const handleTabClick = ({ key }: { key: React.Key }) => {
     const clickedTab = key as string;

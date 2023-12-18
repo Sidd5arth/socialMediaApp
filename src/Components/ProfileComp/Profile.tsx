@@ -30,6 +30,7 @@ const Profile: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [userName, setUserName] = useState<string | null>(null);
+  const [loggingOut, setIsLoggingOut] = useState<boolean>(false);
   const [smallScreen, setSmallScreen] = useState<boolean>(
     dimensions.width < 600
   );
@@ -168,6 +169,7 @@ const Profile: React.FC = () => {
   };
 
   const handleLogOut = async () => {
+    setIsLoggingOut(true);
     const { error } = await supabase.auth.signOut();
     localStorage.removeItem("supabaseSession");
     navigate("/", { replace: true });
@@ -184,6 +186,7 @@ const Profile: React.FC = () => {
     if (error) {
       toast.error("something went wrong");
     }
+    setIsLoggingOut(false);
   };
 
   return (
@@ -301,7 +304,7 @@ const Profile: React.FC = () => {
               onClick={handleLogOut}
               className="bg-red-400 text-white rounded shadow-lg p-2 w-[80px]"
             >
-              Logout
+              {loggingOut ? "Logging out..." : "Logout"}
             </button>
           )}
         </div>
