@@ -69,6 +69,7 @@ const Navbar: React.FC = () => {
     }
     setIsLoggingOut(false);
   };
+  //navigating with components
   const tabData = [
     { icn: HomeOutlined, name: "Home", component: <Home /> },
     { icn: HeartOutlined, name: "Likes", component: <Likes /> },

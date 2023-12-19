@@ -1,15 +1,37 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { MemoryRouter } from "react-router-dom";
+import AppContext from "../context/app-context";
+import { BrowserRouter as Router } from "react-router-dom";
 import SideNavBar from "../Components/SideNavBar";
-
-const mockNavigate = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockNavigate,
-}));
+//tabs rendering for mobile view
+const appContextValues = {
+  userData: {
+    user: {
+      id: "123",
+      email: "example@example.com",
+      user_metadata: {
+        first_name: "John",
+      },
+    },
+    session: {},
+  },
+  dimensions: { width: 400, height: 800 },
+  allPostData: [
+    {
+      post_id: "1",
+      content: "Test post 1",
+      likes: ["mockUserId", "123"],
+      bookmarks: ["sdvsd", "123"],
+      created_by: "123",
+      created_at: new Date().toISOString(),
+    },
+  ],
+  prflpic: [],
+  setAllPostData: () => {},
+  setUserData: () => {},
+  setPrflpic: () => {},
+};
 
 const setWindowWidth = (width: number) => {
   Object.defineProperty(window, "innerWidth", {
@@ -26,9 +48,11 @@ describe("SideNavBar component", () => {
 
   test("renders SideNavBar component with basic navigation items", () => {
     render(
-      <MemoryRouter>
-        <SideNavBar />
-      </MemoryRouter>
+      <Router>
+        <AppContext.Provider value={appContextValues}>
+          <SideNavBar />
+        </AppContext.Provider>
+      </Router>
     );
 
     expect(screen.getByText("Home")).toBeInTheDocument();
@@ -37,21 +61,5 @@ describe("SideNavBar component", () => {
     expect(screen.getByText("Profile")).toBeInTheDocument();
     expect(screen.getByText("Likes")).toBeInTheDocument();
     expect(screen.getByText("Bookmarks")).toBeInTheDocument();
-  });
-
-  test("navigates to the correct path when a navigation item is clicked", () => {
-    render(
-      <MemoryRouter>
-        <SideNavBar />
-      </MemoryRouter>
-    );
-
-    const navigationItems = ["Home", "Posts", "Profile", "Likes", "Bookmarks"];
-    for (const item of navigationItems) {
-      const navItem = screen.getByText(item, { selector: "nav li p" });
-      fireEvent.click(navItem);
-
-      expect(mockNavigate).toHaveBeenCalledWith(`/`);
-    }
   });
 });

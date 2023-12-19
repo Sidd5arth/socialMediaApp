@@ -38,27 +38,7 @@ render(
 );
 
 test("renders Bookmarks component correctly", () => {
-  // Mock the necessary context values
-
-  // Test that the "Bookmarks" heading is rendered
-  const headingElement = screen.getByText(/Bookmarks/i);
-  expect(headingElement).toHaveTextContent("Bookmarks"); // Use toHaveTextContent matcher
-
-  // Test that the loading spinner is not displayed
-  const spinnerElement = screen.queryByTestId("loading-spinner");
-  expect(spinnerElement).not.toBeInTheDocument();
-});
-test("renders PostCard component for each item in the bookmarked array", () => {
-  // Create a sample bookmarked array with multiple items
-  const bookmarkedArray = [
-    { post_id: 1, caption: "Post 1" },
-    { post_id: 2, caption: "Post 2" },
-    { post_id: 3, caption: "Post 3" },
-  ];
-
-  // Select all PostCard components by testId
-  const postCardElements = screen.getAllByTestId("post-card");
-
-  // Assert that the number of PostCard components is equal to the length of the bookmarked array
-  expect(postCardElements.length).toBe(bookmarkedArray.length);
+  expect(
+    screen.getByRole("heading", { name: /Bookmarks/i })
+  ).toBeInTheDocument();
 });

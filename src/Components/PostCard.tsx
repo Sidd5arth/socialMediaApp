@@ -378,6 +378,7 @@ const PostCard: React.FC<Props> = ({
           <div className="flex items-center align-middle gap-1 border-2 bg-white w-18 h-8 md:p-2 p-1 rounded-lg border-white shadow-lg transform bottom-8 left-24 bg-opacity-80 backdrop-blur-md">
             {isLiked ? (
               <FaHeart
+                aria-label="like-button"
                 className="text-red-500 cursor-pointer"
                 onClick={() => {
                   setIsLiked(false);
@@ -386,6 +387,7 @@ const PostCard: React.FC<Props> = ({
               />
             ) : (
               <FaRegHeart
+                aria-label="unlike-button"
                 className="text-red-500 cursor-pointer "
                 onClick={() => {
                   setIsLiked(true);

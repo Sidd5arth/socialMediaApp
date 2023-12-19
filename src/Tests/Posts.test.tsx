@@ -3,6 +3,13 @@ import { render, screen } from "@testing-library/react";
 import Posts from "../Pages/Posts";
 import AppContext from "../context/app-context";
 import { MemoryRouter } from "react-router-dom";
+window.matchMedia = jest.fn().mockImplementation((query: string) => ({
+  matches: false,
+  media: query,
+  onchange: null,
+  addListener: jest.fn(),
+  removeListener: jest.fn(),
+}));
 const appContextValues = {
   userData: {
     user: {
@@ -26,19 +33,6 @@ const appContextValues = {
 };
 
 describe("Posts Component", () => {
-  beforeAll(() => {
-    Object.defineProperty(window, "matchMedia", {
-      writable: true,
-      value: jest.fn().mockImplementation((query) => ({
-        matches: false,
-        media: query,
-        onchange: null,
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      })),
-    });
-  });
   it("renders Posts component correctly", () => {
     render(
       <MemoryRouter>
