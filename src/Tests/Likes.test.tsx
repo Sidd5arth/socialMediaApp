@@ -7,7 +7,15 @@ import "@testing-library/jest-dom/extend-expect";
 import Likes from "../Pages/Likes";
 
 // testing for Liked post to render
-
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    };
+  },
+});
 const appContextValues = {
   userData: {
     user: {

@@ -3,7 +3,15 @@ import { render, screen } from "@testing-library/react";
 import Posts from "../Pages/Posts";
 import AppContext from "../context/app-context";
 import { MemoryRouter } from "react-router-dom";
-
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    };
+  },
+});
 const appContextValues = {
   userData: {
     user: {

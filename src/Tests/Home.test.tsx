@@ -4,7 +4,15 @@ import AppContext from "../context/app-context";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../Pages/Home";
-
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    };
+  },
+});
 const appContextValues = {
   userData: {
     user: {
