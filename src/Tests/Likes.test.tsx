@@ -8,15 +8,6 @@ import Likes from "../Pages/Likes";
 
 // testing for Liked post to render
 
-window.matchMedia = jest.fn().mockImplementation((query: string) => ({
-  matches: false,
-  media: query,
-  onchange: null,
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-  dispatchEvent: jest.fn(),
-}));
-
 const appContextValues = {
   userData: {
     user: {

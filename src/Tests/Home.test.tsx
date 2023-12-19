@@ -4,24 +4,6 @@ import AppContext from "../context/app-context";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../Pages/Home";
-import { supabase } from "../SupabaseClient";
-
-window.matchMedia = jest.fn().mockImplementation((query: string) => ({
-  matches: false,
-  media: query,
-  onchange: null,
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-  dispatchEvent: jest.fn(),
-}));
-
-jest.mock("../SupabaseClient", () => ({
-  supabase: {
-    auth: {
-      signOut: jest.fn(),
-    },
-  },
-}));
 
 const appContextValues = {
   userData: {

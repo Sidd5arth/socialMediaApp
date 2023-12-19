@@ -3,14 +3,6 @@ import { render, screen } from "@testing-library/react";
 import Posts from "../Pages/Posts";
 import AppContext from "../context/app-context";
 import { MemoryRouter } from "react-router-dom";
-window.matchMedia = jest.fn().mockImplementation((query: string) => ({
-  matches: false,
-  media: query,
-  onchange: null,
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-  dispatchEvent: jest.fn(),
-}));
 
 const appContextValues = {
   userData: {
