@@ -28,7 +28,6 @@ const appContextValues = {
   setPrflpic: () => {},
 };
 
-// Render the component with the mocked context values
 render(
   <Router>
     <AppContext.Provider value={appContextValues}>
