@@ -25,6 +25,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### Jest Tests
+
+
+
+https://github.com/Sidd5arth/socialMediaApp/assets/88337830/b5f41bea-8d79-4311-9e7d-0eb1c778a524
+
+
+
+### Cypress Tests
+
+I covered some basic user flow here with cypress.
+# first test -> user login and goes through all the tabs then logout.
+# second test -> user login, create post and then delete it.
+
+
+
+https://github.com/Sidd5arth/socialMediaApp/assets/88337830/9546588d-6758-41ca-b7d2-f2ba217a447b
+
+
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
