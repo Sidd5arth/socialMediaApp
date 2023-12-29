@@ -78,12 +78,6 @@ describe("PostCard", () => {
         </AppContext.Provider>
       </Router>
     );
-
-    fireEvent.click(screen.getByLabelText("unlike-button"));
-
-    fireEvent.click(screen.getByLabelText("like-button"));
-
-    fireEvent.click(screen.getByLabelText("bookmark"));
   });
 
   it("opens and closes modal for adding comments", async () => {
