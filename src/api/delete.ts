@@ -1,6 +1,5 @@
 import { supabase } from "../SupabaseClient";
 import { toast } from "react-hot-toast";
-
 export const deleteData = async (
   from: string,
   col: string,

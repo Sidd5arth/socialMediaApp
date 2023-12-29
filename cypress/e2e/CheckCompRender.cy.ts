@@ -1,4 +1,5 @@
 // checks user flow for logging in and visiting each page(component) then logging out
+import "@cypress/code-coverage/support";
 describe("check component", () => {
   beforeEach(() => {
     cy.login("abc@gmail.com", "abcgmail");

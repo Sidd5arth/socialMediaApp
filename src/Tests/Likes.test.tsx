@@ -2,11 +2,10 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import AppContext from "../context/app-context";
 import { BrowserRouter as Router } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 
 import Likes from "../Pages/Likes";
 
-// testing for Liked post to render
 Object.defineProperty(window, "matchMedia", {
   value: () => {
     return {
@@ -19,7 +18,7 @@ Object.defineProperty(window, "matchMedia", {
 const appContextValues = {
   userData: {
     user: {
-      id: "123", // userId should be in likes array
+      id: "123",
       email: "example@example.com",
       user_metadata: {
         first_name: "John",
@@ -32,7 +31,7 @@ const appContextValues = {
     {
       post_id: "1",
       content: "Test post 1",
-      likes: ["mockUserId", "123"], // userId should be in likes array
+      likes: ["mockUserId", "123"],
       bookmarks: ["sdvsd", "123"],
       created_by: "123",
       created_at: new Date().toISOString(),
@@ -46,7 +45,7 @@ const appContextValues = {
 const appContextValuesNOposts = {
   userData: {
     user: {
-      id: "123", // userId should be in likes array
+      id: "123",
       email: "example@example.com",
       user_metadata: {
         first_name: "John",
@@ -59,7 +58,7 @@ const appContextValuesNOposts = {
     {
       post_id: "1",
       content: "Test post 1",
-      likes: [], // no likes
+      likes: [],
       bookmarks: ["sdvsd", "123"],
       created_by: "123",
       created_at: new Date().toISOString(),

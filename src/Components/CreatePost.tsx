@@ -80,6 +80,7 @@ const CreatePost: React.FC = () => {
       <div className="md:w-full w-[80vw] mx-auto mt-10 p-4 shadow-lg shadow-gray-200 bg-white rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Create a Post</h2>
         <textarea
+          aria-label="textarea"
           className="resize-none w-full h-20 p-2 mb-4 border border-gray-200 bg-gray-50 bg-opacity-50 rounded-lg"
           placeholder="Write your post..."
           ref={inputRef}

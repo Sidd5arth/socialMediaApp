@@ -12,7 +12,6 @@ describe("Navbar component", () => {
       </MemoryRouter>
     );
 
-    // checking if each navigation item is rendered
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Likes")).toBeInTheDocument();
     expect(screen.getByText("Bookmark")).toBeInTheDocument();

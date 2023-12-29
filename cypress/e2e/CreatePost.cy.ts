@@ -1,3 +1,4 @@
+import "@cypress/code-coverage/support";
 describe("Create Post", () => {
   it("creates, adds, and deletes a post", () => {
     cy.login("abc@gmail.com", "abcgmail");

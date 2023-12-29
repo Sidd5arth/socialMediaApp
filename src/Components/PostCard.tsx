@@ -269,7 +269,12 @@ const PostCard: React.FC<Props> = ({
           style: { backgroundColor: "#4299f9" },
         }}
       ></Modal>
-      <Modal title="Title" open={open} onCancel={handleCancel} footer={null}>
+      <Modal
+        title="comment here"
+        open={open}
+        onCancel={handleCancel}
+        footer={null}
+      >
         <form
           className="flex flex-col align-middle justify-center gap-2"
           onSubmit={(e) => addComment(e)}
@@ -398,6 +403,7 @@ const PostCard: React.FC<Props> = ({
             <p className="text-gray-500">{likes?.length}</p>
           </div>
           <div
+            aria-label="comment-button"
             className="flex items-center align-middle gap-1 border-2 bg-white w-18 h-8 md:p-2 p-1 rounded-lg border-white shadow-lg transform bottom-8 left-24 bg-opacity-80 backdrop-blur-md"
             onClick={handleCommentData}
           >
@@ -409,6 +415,7 @@ const PostCard: React.FC<Props> = ({
             <button className="text-blue-500"></button>
             {isBookmarks ? (
               <FaSave
+                aria-label="unbookmark"
                 onClick={() => {
                   handleLikeNbookmark("bookmarks");
                   setIsBookmarks(false);
@@ -417,6 +424,7 @@ const PostCard: React.FC<Props> = ({
               />
             ) : (
               <FaRegSave
+                aria-label="bookmark"
                 onClick={() => {
                   handleLikeNbookmark("bookmarks");
                   setIsBookmarks(true);

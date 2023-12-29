@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import AppContext from "../context/app-context";
 import { BrowserRouter as Router } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import Home from "../Pages/Home";
 Object.defineProperty(window, "matchMedia", {
   value: () => {
@@ -16,7 +16,7 @@ Object.defineProperty(window, "matchMedia", {
 const appContextValues = {
   userData: {
     user: {
-      id: "123", // userId should be in likes array
+      id: "123",
       email: "example@example.com",
       user_metadata: {
         first_name: "John",
@@ -29,7 +29,7 @@ const appContextValues = {
     {
       post_id: "1",
       content: "Test post 1",
-      likes: ["mockUserId", "123"], // userId should be in likes array
+      likes: ["mockUserId", "123"],
       bookmarks: ["sdvsd", "123"],
       created_by: "123",
       created_at: new Date().toISOString(),
