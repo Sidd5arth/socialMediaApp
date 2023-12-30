@@ -12,6 +12,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Install Jest 29.7.0
+        run: npm install jest@^29.7.0
+
       - name: Run ESLint
         uses: sibiraj-s/action-eslint@v3.0.1
 
