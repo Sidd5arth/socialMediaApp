@@ -5,6 +5,16 @@ import PostCard from "../Components/PostCard";
 import AppContext from "../context/app-context";
 import { BrowserRouter as Router } from "react-router-dom";
 
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
+    };
+  },
+});
+
 jest.mock("../api/insert", () => ({
   insertData: jest.fn(() => Promise.resolve()),
 }));

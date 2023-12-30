@@ -41,8 +41,12 @@ describe("deleteData", () => {
     });
 
     const fromMock = require("../../SupabaseClient").supabase.from as jest.Mock;
-    const deleteMock = fromMock.mock.results[0].value.delete as jest.Mock;
-    const eqMock = deleteMock.mock.results[0].value.eq as jest.Mock;
+    const deleteMock = fromMock.mock.results[0].value.delete as
+      | jest.Mock
+      | undefined;
+    const eqMock = deleteMock?.mock.results[0].value.eq as
+      | jest.Mock
+      | undefined;
 
     expect(fromMock).toHaveBeenCalledWith("tableName");
     expect(deleteMock).toHaveBeenCalled();
@@ -55,14 +59,12 @@ describe("deleteData", () => {
 
   it("should handle delete failure", async () => {
     jest.mock("../../SupabaseClient", () => {
-      const deleteMock = jest.fn();
-      const eqMock = jest.fn(() => ({
-        error: new Error("Delete failed"),
+      const deleteMock = jest.fn(() => ({
+        eq: jest.fn().mockResolvedValue({ error: new Error("Delete failed") }),
       }));
 
       const fromMock = jest.fn(() => ({
         delete: deleteMock,
-        eq: eqMock,
       }));
 
       return {
@@ -75,8 +77,12 @@ describe("deleteData", () => {
     await deleteData("tableName", "columnName", "matchingValue");
 
     const fromMock = require("../../SupabaseClient").supabase.from as jest.Mock;
-    const deleteMock = fromMock.mock.results[0].value.delete as jest.Mock;
-    const eqMock = deleteMock.mock.results[0].value.eq as jest.Mock;
+    const deleteMock = fromMock.mock.results[0].value.delete as
+      | jest.Mock
+      | undefined;
+    const eqMock = deleteMock?.mock.results[0].value.eq as
+      | jest.Mock
+      | undefined;
 
     expect(fromMock).toHaveBeenCalledWith("tableName");
     expect(deleteMock).toHaveBeenCalled();

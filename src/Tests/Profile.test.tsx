@@ -149,7 +149,5 @@ describe("Profile", () => {
     );
 
     expect(appContextValues.setPrflpic).toHaveBeenCalledTimes(1);
-
-    console.log(appContextValues.setPrflpic.mock.calls);
   });
 });
