@@ -12,6 +12,9 @@ Jest and cypress
 ### Android App
 Capacitor
 
+### Backend
+Supabase
+
 # DOWNLOAD the APK from here
 
 https://drive.google.com/drive/folders/1sZAN2MlG0b06v1_a8WZEB_KX0RQSDPj5?usp=sharing
