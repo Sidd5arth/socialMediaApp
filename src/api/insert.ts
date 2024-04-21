@@ -1,8 +1,7 @@
 import { supabase } from "../SupabaseClient";
-import { comments } from "../types";
 import { toast } from "react-hot-toast";
-
-export const insertData = async (from: string, payload: comments[]) => {
+import { PostData } from "../types";
+export const insertData = async (from: string, payload: PostData[]) => {
   try {
     const { data, error } = await supabase.from(from).insert(payload);
 

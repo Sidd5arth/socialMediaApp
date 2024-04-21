@@ -16,6 +16,7 @@ import { Circles } from "react-loader-spinner";
 import { allData } from "../types";
 import { getAllPaginated } from "../api/getAll";
 import { toast } from "react-hot-toast";
+import { Skeleton } from "antd";
 const Home = () => {
   const { userData, dimensions, prflpic, setAllPostData, allPostData } =
     useContext(AppContext);
@@ -133,16 +134,13 @@ const Home = () => {
 
   return (
     <>
-      <div
-        className="lg:mx-20 flex flex-row gap-1 align-middle justify-center w-full"
-        style={{ height: "80vh" }}
-      >
+      <div className="lg:mx-20 flex flex-row gap-1 align-middle justify-center w-full">
         {smallScreen && (
           <div className="w-full absolute flex bottom-0">
             <SideNavBar />
           </div>
         )}
-        <div className="lg:mt-1 w-full flex flex-col items-start justify-start ">
+        <div className="lg:mt-1 w-[80vw] flex flex-col items-start justify-start ">
           <div className="bg-opacity-50 w-full rounded-lg backdrop-blur-md">
             <h1 className="text-xl font-semibold p-4">Explore Posts</h1>
           </div>
@@ -179,6 +177,8 @@ const Home = () => {
                       creator_id={item.created_by}
                       created_at={item.created_at}
                       imageSrc={img}
+                      imagePost={item.img_url}
+                      creatorName={item.creator_name}
                     />
                   );
                 }
@@ -187,13 +187,13 @@ const Home = () => {
           )}
           {loadingPost && (
             <div className="h-[10px] w-full flex items-center justify-center gap-2">
-              <p className="text-xs">Loading posts</p>
-              <Circles color="black" width={"10px"} height={"10px"} />
+              {/* <p className="text-xs">Loading posts</p> */}
+              <Skeleton />
             </div>
           )}
         </div>
         {!smallScreen && (
-          <div className="w-7/12 flex flex-col items-center justify-between py-1">
+          <div className="flex flex-col w-11/12 items-center justify-between py-1">
             <CreatePost />
           </div>
         )}

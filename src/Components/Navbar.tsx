@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <Layout className="w-[80%] m-auto h-full">
       <Sider breakpoint="lg" collapsedWidth="0">
         <div className="demo-logo-vertical" />
         <Menu
@@ -122,13 +122,13 @@ const Navbar: React.FC = () => {
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: "white" }} />
-        <Content style={{ margin: "24px 16px 0" }}>
+        <Content style={{ margin: "1.5px 1px 0" }}>
           <div
             style={{
               padding: 24,
               minHeight: 360,
               background: colorBgContainer,
-              height: "85vh",
+              height: "calc(92vh )",
             }}
             className="flex align-middle justify-center w-full"
           >

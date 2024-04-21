@@ -99,11 +99,6 @@ const Profile: React.FC = () => {
     }
   }, [uploadResponse]);
 
-  // uploading image and updating text
-  //inside handleOk used uploadFile function provided by fileupload hook and then on url got from image upload
-  //is stored in the database vai useEffect which listen to uploadResponse
-  // and called setImage to set image in user table.
-
   const handleOk = async () => {
     setConfirmLoading(true);
     if (selectedImage) {

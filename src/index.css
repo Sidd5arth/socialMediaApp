@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "CircularStd";
+  src: url("./assets/CircularStd-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "CircularStdl";
+  src: url("./assets/CircularStd-Light.otf") format("opentype");
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -11,5 +20,12 @@ body {
   overflow: hidden;
 }
 * {
-  font-family: "gotham, sans-serif";
+  font-family: "CircularStdl";
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "CircularStd";
 }

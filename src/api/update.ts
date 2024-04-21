@@ -14,10 +14,6 @@ export const updateData = async (
       .update({ [name]: value })
       .eq(col, matches);
 
-    if (error) {
-      throw error;
-    }
-
     if (data) {
       toast.success(`${from} edited successfully`);
     }
@@ -38,10 +34,6 @@ export const updateImg = async (
       .from(from)
       .update({ [name]: value })
       .eq(col, matches);
-
-    if (error) {
-      throw error;
-    }
 
     if (data) {
       toast.success(`${from} edited successfully`);

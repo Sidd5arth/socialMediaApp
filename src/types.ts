@@ -24,6 +24,7 @@ export interface PostData {
   created_by?: string | "";
   likes?: string[] | [];
   bookmarks?: string[] | [];
+  img_url?: string | null | File;
 }
 export interface Profile {
   user_id: string | "";
@@ -62,4 +63,6 @@ export interface allData {
   content?: string | "";
   likes?: string[] | [];
   bookmarks?: string[] | [];
+  img_url?: string;
+  creator_name?: string;
 }

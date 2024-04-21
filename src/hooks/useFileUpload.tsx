@@ -17,7 +17,13 @@ function useFileUpload() {
   ) => {
     try {
       setIsUploading(true);
-      await supabase.storage.from(bucketName).upload(filePath, file);
+      const { error } = await supabase.storage
+        .from(bucketName)
+        .upload(filePath, file);
+
+      if (error) {
+        throw new Error(error.message);
+      }
     } catch (error) {
       toast.error("upload error");
     }

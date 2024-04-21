@@ -129,20 +129,20 @@ const Posts = () => {
         columns={[
           { title: "Date", dataIndex: "date", key: "date" },
           { title: "Content", dataIndex: "name", key: "name" },
-          {
-            title: "Action",
-            dataIndex: "operation",
-            key: "operation",
-            valueType: "option",
-            render: () => [
-              <a className="mr-3 text-green-400" key="Pause">
-                Edit
-              </a>,
-              <a className="text-red-400" key="Stop">
-                Delete
-              </a>,
-            ],
-          },
+          // {
+          //   title: "Action",
+          //   dataIndex: "operation",
+          //   key: "operation",
+          //   valueType: "option",
+          //   // render: () => [
+          //   //   <a className="mr-3 text-green-400" key="Pause">
+          //   //     Edit
+          //   //   </a>,
+          //   //   <a className="text-red-400" key="Stop">
+          //   //     Delete
+          //   //   </a>,
+          //   // ],
+          // },
         ]}
         headerTitle={false}
         search={false}
