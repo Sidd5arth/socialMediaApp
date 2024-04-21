@@ -3,6 +3,17 @@
 
 ## PASSWORD - abcgamil
 
+### Techstack
+React, typeScript, tailwind CSS
+
+### Testing (unit and E2E)
+Jest and cypress
+
+### Android App
+Capacitor
+
+### Backend
+Supabase
 
 # DOWNLOAD the APK from here
 
