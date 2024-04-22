@@ -23,6 +23,7 @@ const CaptionPrompt: React.FC<CaptionPromptProps> = ({ setCaption }) => {
   };
 
   const handleSubmit = async () => {
+    setloading(true);
     const inputText = inputRef?.current?.value;
     try {
       const response = await fetch(
@@ -37,15 +38,14 @@ const CaptionPrompt: React.FC<CaptionPromptProps> = ({ setCaption }) => {
         }
       );
       const result = await response.json();
-      console.log(result);
       const generatedText = result[0].generated_text;
       const parts = generatedText.split("\n\n");
       const secondPart = parts[1];
-      console.log(secondPart);
       setCaption(secondPart);
       if (inputRef.current) {
         inputRef.current.value = "";
       }
+      setloading(false);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -72,9 +72,9 @@ const CaptionPrompt: React.FC<CaptionPromptProps> = ({ setCaption }) => {
         >
           {!textDisable ? `${charCount} / 105` : "Prompt limit reached"}
         </p>
-        <Button onClick={handleSubmit} disabled={textDisable}>
+        <Button onClick={handleSubmit} disabled={textDisable} loading={loading}>
           {" "}
-          Create Caption
+          Create
         </Button>
       </div>
     </div>

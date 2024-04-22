@@ -21,6 +21,7 @@ const ImagePrompt: React.FC<ImagePromptProps> = ({ setImage }) => {
     }
   };
   const handleSubmit = async () => {
+    setloading(true);
     const inputText = inputRef?.current?.value;
     async function query(data: any) {
       const response = await fetch(
@@ -44,6 +45,7 @@ const ImagePrompt: React.FC<ImagePromptProps> = ({ setImage }) => {
       });
       console.log(imageFile);
       setImage(imageFile);
+      setloading(false);
       if (inputRef.current) {
         inputRef.current.value = "";
       }
@@ -71,9 +73,9 @@ const ImagePrompt: React.FC<ImagePromptProps> = ({ setImage }) => {
         >
           {!textDisable ? `${charCount} / 105` : "Prompt limit reached"}
         </p>
-        <Button onClick={handleSubmit} disabled={textDisable}>
+        <Button onClick={handleSubmit} disabled={textDisable} loading={loading}>
           {" "}
-          Create Image
+          Create
         </Button>
       </div>
     </div>

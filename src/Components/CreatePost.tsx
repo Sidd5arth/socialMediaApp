@@ -107,6 +107,9 @@ const CreatePost: React.FC = () => {
       };
       getAllPostData();
       setCaption("");
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
       setImage(null);
       setloading(false);
     } catch (error) {
